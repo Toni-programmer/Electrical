@@ -1,0 +1,140 @@
+<% content_for :title, "Electricas Rincón – Electricistas de confianza" %>
+<!-- Hero -->
+<section class="relative min-h-[600px] flex items-stretch">
+  <%# MÓVIL: foto de fondo con overlay %>
+  <%= image_tag "hero-electrician.jpg",
+        alt: "",
+        class: "md:hidden absolute inset-0 w-full h-full object-cover object-top" %>
+  <div class="md:hidden absolute inset-0 bg-gray-900/65"></div>
+  <%# DESKTOP: columna izquierda amarilla con texto %>
+  <div class="relative z-10 flex flex-col justify-center w-full md:w-1/2 bg-transparent md:bg-yellow-400 px-8 md:px-16 py-20">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white md:text-gray-900 leading-tight mb-4">
+      Soluciones eléctricas<br>
+      profesionales
+    </h1>
+    <p class="text-gray-200 md:text-gray-800 text-lg mb-8 max-w-md">
+      Instalaciones, reparaciones y mantenimiento eléctrico para hogares y empresas. Rápido, seguro y con garantía.
+    </p>
+    <div class="flex flex-wrap gap-4">
+      <%= link_to "Solicitar presupuesto", new_quote_path,
+            class: "bg-yellow-400 md:bg-gray-900 text-gray-900 md:text-yellow-400 font-semibold px-6 py-3 rounded-lg hover:bg-yellow-300 md:hover:bg-gray-700 transition-colors" %>
+      <%= link_to "Ver servicios", services_path,
+            class: "border-2 border-white md:border-gray-900 text-white md:text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-white/10 md:hover:bg-yellow-300 transition-colors" %>
+    </div>
+  </div>
+  <%# DESKTOP: columna derecha con la foto %>
+  <div class="hidden md:block w-1/2">
+    <%= image_tag "hero-electrician.jpg",
+          alt: "Electricista Rincón trabajando en cuadro eléctrico",
+          class: "w-full h-full object-cover object-center" %>
+  </div>
+</section>
+<!-- Highlights -->
+<section class="py-16 px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    <div class="bg-white rounded-xl p-8 shadow-sm">
+      <div class="text-yellow-400 text-4xl font-extrabold mb-2">+500</div>
+      <p class="text-gray-700 font-medium">Proyectos completados</p>
+    </div>
+    <div class="bg-white rounded-xl p-8 shadow-sm">
+      <div class="text-yellow-400 text-4xl font-extrabold mb-2">Máxima eficiencia</div>
+      <p class="text-gray-700 font-medium">Trabajamos con rapidez para ofrecer soluciones eficientes.</p>
+    </div>
+    <div class="bg-white rounded-xl p-8 shadow-sm">
+      <div class="text-yellow-400 text-4xl font-extrabold mb-2">10 años</div>
+      <p class="text-gray-700 font-medium">De experiencia</p>
+    </div>
+  </div>
+</section>
+<!-- Empresas colaboradoras -->
+<section class="py-10 px-6 bg-white border-y border-gray-100">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">Empresas con las que colaboramos</p>
+    <div class="flex flex-wrap items-center justify-center gap-12">
+      <%= image_tag "logo-arkima.png", alt: "Arkima", class: "h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100" %>
+      <%= image_tag "logo-promurban.png", alt: "Promurban", class: "h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100" %>
+    </div>
+  </div>
+</section>
+<!-- Empresas proveedores -->
+<section class="py-10 px-6 bg-white border-y border-gray-100">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">Proveedores que colaboran con nosotros</p>
+    <div class="flex flex-wrap items-center justify-center gap-12">
+      <%= image_tag "logo-sindel.png", alt: "Sindel materiales eléctricos", class: "h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100" %>
+      <%= image_tag "logo-volton.png", alt: "Volton", class: "h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100" %>
+    </div>
+  </div>
+</section>
+<!-- Entidades importantes-->
+<section class="py-10 px-6 bg-white border-y border-gray-100">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">Entidades oficiales</p>
+    <div class="flex flex-wrap items-center justify-center gap-12">
+      <%= image_tag "logo-comunitat.png", alt: "Comunidad Valenciana", class: "h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100" %>
+      <%= image_tag "logo-enac.png", alt: "Organismo oficial de acreditación en España.", class: "h-24 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100" %>
+    </div>
+  </div>
+</section>
+<!-- Servicios destacados -->
+<% if @services.any? %>
+  <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2">Nuestros servicios</h2>
+      <p class="text-gray-500 mb-10">Todo lo que necesitas en instalaciones eléctricas.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <% @services.each do |service| %>
+          <div class="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+            <h3 class="font-bold text-lg text-gray-900 mb-2"><%= service.title %></h3>
+            <p class="text-gray-500 text-sm mb-4 line-clamp-3"><%= service.description %></p>
+            <%= link_to "Ver más →", service_path(service), class: "text-yellow-500 font-semibold text-sm hover:underline" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="text-center mt-10">
+        <%= link_to "Ver todos los servicios", services_path,
+              class: "border-2 border-yellow-400 text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors" %>
+      </div>
+    </div>
+  </section>
+<% end %>
+<!-- Proyectos destacados -->
+<% if @projects.any? %>
+  <section class="py-16 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2">Proyectos recientes</h2>
+      <p class="text-gray-500 mb-10">Algunos trabajos que hemos realizado.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <% @projects.each do |project| %>
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <% if project.image.present? %>
+              <img src="<%= project.image %>" alt="<%= project.title %>" class="w-full h-48 object-cover">
+            <% else %>
+              <div class="w-full h-48 bg-yellow-100 flex items-center justify-center">
+                <svg class="h-16 w-16 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M13 2L4.09 12.96A1 1 0 005 14.5h6.5L11 22l8.91-10.96A1 1 0 0019 9.5h-6.5L13 2z"/>
+                </svg>
+              </div>
+            <% end %>
+            <div class="p-6">
+              <p class="text-xs text-yellow-600 font-semibold uppercase mb-1"><%= project.client %></p>
+              <h3 class="font-bold text-gray-900 mb-2"><%= project.title %></h3>
+              <%= link_to "Ver proyecto →", project_path(project), class: "text-yellow-500 font-semibold text-sm hover:underline" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="text-center mt-10">
+        <%= link_to "Ver todos los proyectos", projects_path,
+              class: "border-2 border-yellow-400 text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors" %>
+      </div>
+    </div>
+  </section>
+<% end %>
+<!-- CTA final -->
+<section class="py-20 px-6 bg-gray-900 text-center">
+  <h2 class="text-3xl font-bold text-white mb-4">¿Necesitas un electricista?</h2>
+  <p class="text-gray-400 mb-8 max-w-xl mx-auto">Cuéntanos tu proyecto y te enviamos un presupuesto sin compromiso en menos de 24 horas.</p>
+  <%= link_to "Solicitar presupuesto gratis", new_quote_path,
+        class: "bg-yellow-400 text-gray-900 font-bold px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition-colors" %>
+</section>

@@ -1,0 +1,46 @@
+<% content_for :title, "Servicios – Electricas Rincón" %>
+
+<!-- Header -->
+<section class="bg-gray-900 py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-yellow-400 font-semibold uppercase tracking-widest text-sm mb-2">Lo que hacemos</p>
+    <h1 class="text-4xl font-extrabold text-white">Nuestros servicios</h1>
+    <p class="text-gray-400 mt-3 max-w-xl">Soluciones eléctricas profesionales para hogares, empresas y comunidades. Calidad garantizada en cada trabajo.</p>
+  </div>
+</section>
+
+<!-- Grid de servicios -->
+<section class="py-16 px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <% @services.each do |service| %>
+      <%= link_to service_path(service), class: "bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group border border-gray-100 flex flex-col" do %>
+        <div class="relative h-48 overflow-hidden">
+          <% if service.image.present? %>
+            <img src="<%= service.image %>" alt="<%= service.title %>"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <% else %>
+            <div class="w-full h-full bg-yellow-100 flex items-center justify-center">
+              <svg class="h-16 w-16 text-yellow-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+          <% end %>
+          <div class="absolute inset-0 bg-gray-900/20 group-hover:bg-gray-900/10 transition-colors"></div>
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+          <h2 class="text-lg font-bold text-gray-900 mb-2"><%= service.title %></h2>
+          <p class="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-3"><%= service.description %></p>
+          <span class="mt-4 text-yellow-500 font-semibold text-sm group-hover:text-yellow-600 transition-colors">Ver más →</span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 px-6 bg-gray-900 text-center">
+  <h2 class="text-3xl font-bold text-white mb-4">¿No encuentras lo que buscas?</h2>
+  <p class="text-gray-400 mb-8 max-w-xl mx-auto">Cuéntanos tu proyecto y te damos solución. Presupuesto gratuito y sin compromiso.</p>
+  <%= link_to "Solicitar presupuesto", new_quote_path,
+        class: "bg-yellow-400 text-gray-900 font-bold px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition-colors" %>
+</section>
