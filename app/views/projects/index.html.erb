@@ -1,16 +1,48 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Proyectos – Electricas Rincón" %>
 
-<% content_for :title, "Projects" %>
+<section class="bg-yellow-400 py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Nuestros proyectos</h1>
+    <p class="text-gray-800 text-lg max-w-2xl">Trabajos realizados con la máxima calidad y profesionalidad.</p>
+  </div>
+</section>
 
-<h1>Projects</h1>
+<section class="py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <% @projects.each do |project| %>
+        <%= link_to project_path(project), class: "block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group" do %>
+          <div class="relative h-56 overflow-hidden">
+            <% if project.image.present? %>
+              <%= image_tag project.image, alt: project.title, class: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" %>
+            <% else %>
+              <div class="w-full h-full bg-yellow-100 flex items-center justify-center">
+                <svg class="h-16 w-16 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M13 2L4.09 12.96A1 1 0 005 14.5h6.5L11 22l8.91-10.96A1 1 0 0019 9.5h-6.5L13 2z"/>
+                </svg>
+              </div>
+            <% end %>
+            <% if project.category.present? %>
+              <span class="absolute top-4 left-4 bg-yellow-400 text-gray-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                <%= project.category %>
+              </span>
+            <% end %>
+          </div>
+          <div class="p-6">
+            <p class="text-xs text-gray-400 font-semibold uppercase tracking-widest mb-2"><%= project.client %></p>
+            <h2 class="text-xl font-bold text-gray-900 mb-3"><%= project.title %></h2>
+            <p class="text-gray-500 text-sm mb-5 line-clamp-3"><%= project.description %></p>
+            <span class="text-yellow-500 font-semibold text-sm">Ver proyecto →</span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
 
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New project", new_project_path %>
+<section class="py-20 px-6 bg-gray-900 text-center">
+  <h2 class="text-3xl font-bold text-white mb-4">¿Tienes un proyecto en mente?</h2>
+  <p class="text-gray-400 mb-8 max-w-xl mx-auto">Cuéntanos qué necesitas y te enviamos presupuesto sin compromiso.</p>
+  <%= link_to "Solicitar presupuesto", new_quote_path,
+      class: "bg-yellow-400 text-gray-900 font-bold px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition-colors" %>
+</section>

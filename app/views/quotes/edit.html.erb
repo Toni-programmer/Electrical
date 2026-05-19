@@ -1,12 +1,84 @@
-<% content_for :title, "Editing quote" %>
+<% content_for :title, "Editar solicitud – Electricas Rincón" %>
 
-<h1>Editing quote</h1>
+<section class="bg-gray-900 py-12 px-6">
+  <div class="max-w-4xl mx-auto">
+    <%= link_to "← Volver a solicitudes", quotes_path, class: "text-yellow-400 text-sm font-medium hover:text-yellow-300 mb-4 inline-block" %>
+    <h1 class="text-3xl font-extrabold text-white">Editar solicitud</h1>
+    <p class="text-gray-400 mt-1">De: <strong class="text-white"><%= @quote.name %></strong> — <%= @quote.created_at.strftime("%d/%m/%Y") %></p>
+  </div>
+</section>
 
-<%= render "form", quote: @quote %>
-
-<br>
-
-<div>
-  <%= link_to "Show this quote", @quote %> |
-  <%= link_to "Back to quotes", quotes_path %>
-</div>
+<section class="py-10 px-6">
+  <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+    <%= form_with(model: @quote, class: "space-y-6") do |form| %>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <%= form.label :name, "Nombre", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.text_field :name, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+        <div>
+          <%= form.label :phone, "Teléfono", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.text_field :phone, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+      </div>
+      <div>
+        <%= form.label :email, "Email", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+        <%= form.email_field :email, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <%= form.label :provincia, "Provincia", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.text_field :provincia, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+        <div>
+          <%= form.label :ciudad, "Ciudad", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.text_field :ciudad, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+        <div>
+          <%= form.label :codigo_postal, "Código postal", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.text_field :codigo_postal, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+      </div>
+      <div>
+        <%= form.label :titulo, "Título del trabajo", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+        <%= form.text_field :titulo, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <%= form.label :suministro_electrico, "Suministro eléctrico", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.select :suministro_electrico, [["Sí", "si"], ["No", "no"]], {}, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+        <div>
+          <%= form.label :tipo_alimentacion, "Tipo de alimentación", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.select :tipo_alimentacion, [["Monofásica 230V", "monofasica_230v"], ["Trifásica 400V", "trifasica_400v"]], {}, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <%= form.label :tipo_vivienda, "Tipo de vivienda", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.select :tipo_vivienda, [["Apartamento", "apartamento"], ["Vivienda unifamiliar", "vivienda_unifamiliar"], ["Local comercial", "local_comercial"], ["Otros", "otros"]], {}, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+        <div>
+          <%= form.label :superficie, "Superficie (m²)", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.text_field :superficie, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+        <div>
+          <%= form.label :puntos_de_luz, "Puntos de luz", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= form.text_field :puntos_de_luz, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+        </div>
+      </div>
+      <div>
+        <%= form.label :tipo_reforma, "Tipo de reforma", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+        <%= form.select :tipo_reforma, [["Integral", "integral"], ["Parcial", "parcial"], ["Otros", "otros"]], {}, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+      </div>
+      <div>
+        <%= form.label :status, "Estado", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+        <%= form.select :status, Quote::STATUSES.map { |s| [s.capitalize, s] }, {}, class: "w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400" %>
+      </div>
+      <div class="flex gap-4 pt-2">
+        <%= form.submit "Guardar cambios", class: "bg-yellow-400 text-gray-900 font-bold px-8 py-3 rounded-lg hover:bg-yellow-300 transition-colors cursor-pointer" %>
+        <%= link_to "Cancelar", quotes_path, class: "border-2 border-gray-200 text-gray-600 font-bold px-8 py-3 rounded-lg hover:bg-gray-50 transition-colors" %>
+      </div>
+    <% end %>
+  </div>
+</section>

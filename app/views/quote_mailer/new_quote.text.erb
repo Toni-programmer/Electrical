@@ -1,0 +1,24 @@
+NUEVO PRESUPUESTO – Electricas Rincón
+=====================================
+
+CONTACTO
+Nombre:    <%= @quote.name %>
+Teléfono:  <%= @quote.phone %>
+Email:     <%= @quote.email %>
+
+UBICACIÓN
+Provincia:      <%= @quote.provincia %>
+Ciudad:         <%= @quote.ciudad %>
+Código postal:  <%= @quote.codigo_postal %>
+
+INSTALACIÓN
+Título:               <%= @quote.titulo %>
+Suministro eléctrico: <%= @quote.suministro_electrico %>
+Tipo de alimentación: <%= @quote.tipo_alimentacion %>
+Tipo de vivienda:     <%= @quote.tipo_vivienda %><%= " – #{@quote.tipo_vivienda_otro}" if @quote.tipo_vivienda_otro.present? %>
+Superficie:           <%= @quote.superficie %>
+Puntos de luz:        <%= @quote.puntos_de_luz %>
+Tipo de reforma:      <%= @quote.tipo_reforma %><%= " – #{@quote.tipo_reforma_otro}" if @quote.tipo_reforma_otro.present? %>
+
+---
+Email generado automáticamente por electricasrinconvlc.es

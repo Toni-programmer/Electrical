@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem "dotenv-rails", groups: [:development, :test]
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -66,3 +68,5 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 4.4"
+gem "rack-attack"
+gem "invisible_captcha"

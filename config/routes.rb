@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :news
-  resources :tutorials
   resources :quotes
   resources :projects
   resources :services

@@ -1,16 +1,52 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Presupuestos – Electricas Rincón" %>
 
-<% content_for :title, "Quotes" %>
+<section class="bg-gray-900 py-12 px-6">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-extrabold text-white">Solicitudes de presupuesto</h1>
+      <p class="text-gray-400 mt-1"><%= @quotes.count %> solicitudes en total</p>
+    </div>
+    <%= link_to "Nueva solicitud", new_quote_path,
+        class: "bg-yellow-400 text-gray-900 font-bold px-5 py-2.5 rounded-lg hover:bg-yellow-300 transition-colors text-sm" %>
+  </div>
+</section>
 
-<h1>Quotes</h1>
-
-<div id="quotes">
-  <% @quotes.each do |quote| %>
-    <%= render quote %>
-    <p>
-      <%= link_to "Show this quote", quote %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New quote", new_quote_path %>
+<section class="py-10 px-6">
+  <div class="max-w-6xl mx-auto">
+    <% if @quotes.any? %>
+      <div class="space-y-4">
+        <% @quotes.each do |quote| %>
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 flex flex-col md:flex-row md:items-center gap-4">
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-1">
+                <h2 class="font-bold text-gray-900 text-lg"><%= quote.name %></h2>
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full <%= quote.status == 'completado' ? 'bg-green-100 text-green-700' : quote.status == 'contactado' ? 'bg-blue-100 text-blue-700' : 'bg-yellow-100 text-yellow-700' %>">
+                  <%= quote.status&.capitalize %>
+                </span>
+              </div>
+              <p class="text-sm text-gray-500 mb-2">
+                <a href="tel:<%= quote.phone %>" class="hover:text-yellow-500"><%= quote.phone %></a>
+                · <a href="mailto:<%= quote.email %>" class="hover:text-yellow-500"><%= quote.email %></a>
+                · <span class="text-gray-400"><%= quote.created_at.strftime("%d/%m/%Y %H:%M") %></span>
+              </p>
+              <p class="text-gray-600 text-sm line-clamp-2"><%= quote.message %></p>
+            </div>
+            <div class="flex gap-2 shrink-0">
+              <%= link_to "Ver", quote_path(quote),
+                  class: "text-sm font-semibold text-yellow-600 border border-yellow-400 px-4 py-2 rounded-lg hover:bg-yellow-50 transition-colors" %>
+              <%= link_to "Editar", edit_quote_path(quote),
+                  class: "text-sm font-semibold text-gray-600 border border-gray-200 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center py-24 text-gray-400">
+        <svg class="h-12 w-12 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        <p class="font-medium">Aún no hay solicitudes</p>
+      </div>
+    <% end %>
+  </div>
+</section>

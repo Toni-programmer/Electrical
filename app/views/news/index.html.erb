@@ -1,16 +1,43 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Noticias – Electricas Rincón" %>
 
-<% content_for :title, "News" %>
+<section class="bg-yellow-400 py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Noticias del sector</h1>
+    <p class="text-gray-800 text-lg max-w-2xl">Información útil sobre electricidad, energías renovables y normativa.</p>
+  </div>
+</section>
 
-<h1>News</h1>
+<section class="py-16 px-6">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+    <% @news.each do |item| %>
+      <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group flex flex-col">
+        <div class="relative h-52 overflow-hidden bg-gray-100">
+          <% if item.image.present? %>
+            <img src="<%= item.image %>" alt="<%= item.title %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <% else %>
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="h-16 w-16 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M13 2L4.09 12.96A1 1 0 005 14.5h6.5L11 22l8.91-10.96A1 1 0 0019 9.5h-6.5L13 2z"/>
+              </svg>
+            </div>
+          <% end %>
+        </div>
+        <div class="p-6 flex flex-col flex-1">
+          <h2 class="text-lg font-bold text-gray-900 mb-3 leading-snug"><%= item.title %></h2>
+          <p class="text-gray-500 text-sm mb-5 flex-1"><%= item.content %></p>
+          <% if (url = safe_external_url(item.link)) %>
+            <%= link_to "Ver enlace →", url, target: "_blank", rel: "noopener noreferrer",
+                class: "text-yellow-500 font-semibold text-sm hover:underline self-start" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
 
-<div id="news">
-  <% @news.each do |news| %>
-    <%= render news %>
-    <p>
-      <%= link_to "Show this news", news %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New news", new_news_path %>
+<section class="py-20 px-6 bg-gray-900 text-center">
+  <h2 class="text-3xl font-bold text-white mb-4">¿Tienes alguna consulta?</h2>
+  <p class="text-gray-400 mb-8 max-w-xl mx-auto">Contacta con nosotros y te asesoramos sin compromiso.</p>
+  <%= link_to "Solicitar presupuesto", new_quote_path,
+      class: "bg-yellow-400 text-gray-900 font-bold px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition-colors" %>
+</section>

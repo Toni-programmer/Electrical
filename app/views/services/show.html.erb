@@ -20,7 +20,7 @@
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
     <div class="md:col-span-2">
       <% if @service.image.present? %>
-        <img src="<%= @service.image %>" alt="<%= @service.title %>" class="w-full h-64 object-cover rounded-2xl mb-8 shadow-md">
+        <%= image_tag @service.image, alt: @service.title, class: "w-full h-64 object-cover rounded-2xl mb-8 shadow-md" %>
       <% end %>
       <p class="text-gray-600 text-lg leading-relaxed"><%= @service.description %></p>
     </div>

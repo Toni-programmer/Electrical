@@ -1,12 +1,14 @@
-<% content_for :title, "Editing project" %>
+<% content_for :title, "Editar proyecto – Electricas Rincón" %>
 
-<h1>Editing project</h1>
+<section class="bg-gray-900 py-12 px-6">
+  <div class="max-w-4xl mx-auto">
+    <%= link_to "← Volver a proyectos", projects_path, class: "text-yellow-400 text-sm font-medium hover:text-yellow-300 mb-4 inline-block" %>
+    <h1 class="text-3xl font-extrabold text-white">Editar proyecto</h1>
+  </div>
+</section>
 
-<%= render "form", project: @project %>
-
-<br>
-
-<div>
-  <%= link_to "Show this project", @project %> |
-  <%= link_to "Back to projects", projects_path %>
-</div>
+<section class="py-10 px-6">
+  <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+    <%= render "form", project: @project %>
+  </div>
+</section>

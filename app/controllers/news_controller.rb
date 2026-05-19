@@ -1,9 +1,10 @@
 class NewsController < ApplicationController
+  before_action :require_admin, only: %i[ new create edit update destroy ]
   before_action :set_news, only: %i[ show edit update destroy ]
 
   # GET /news or /news.json
   def index
-    @news = News.all
+    @news = News.where(published: true).order(created_at: :desc)
   end
 
   # GET /news/1 or /news/1.json
@@ -65,6 +66,6 @@ class NewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def news_params
-      params.expect(news: [ :title, :slug, :content, :published ])
+      params.expect(news: [ :title, :slug, :content, :published, :image, :link ])
     end
 end

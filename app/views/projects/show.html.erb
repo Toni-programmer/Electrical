@@ -1,10 +1,50 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "#{@project.title} – Electricas Rincón" %>
 
-<%= render @project %>
+<section class="bg-yellow-400 py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <% if @project.category.present? %>
+      <span class="inline-block bg-gray-900 text-yellow-400 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+        <%= @project.category %>
+      </span>
+    <% end %>
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-2"><%= @project.title %></h1>
+    <p class="text-gray-800 font-medium">Cliente: <%= @project.client %></p>
+  </div>
+</section>
 
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
+<section class="py-16 px-6">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <% if @project.image.present? %>
+      <div class="rounded-2xl overflow-hidden shadow-md">
+        <%= image_tag @project.image, alt: @project.title, class: "w-full h-80 object-cover" %>
+      </div>
+    <% end %>
+    <div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Descripción del proyecto</h2>
+      <p class="text-gray-600 leading-relaxed mb-8"><%= @project.description %></p>
+      <%= link_to "← Volver a proyectos", projects_path, class: "text-yellow-500 font-semibold hover:underline" %>
+    </div>
+  </div>
+</section>
 
-  <%= button_to "Destroy this project", @project, method: :delete %>
-</div>
+<% if @project.gallery_images.any? %>
+  <section class="py-12 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Galería</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% @project.gallery_images.each do |img| %>
+          <div class="rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <%= image_tag img, alt: @project.title, class: "w-full h-48 object-cover hover:scale-105 transition-transform duration-300" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<section class="py-20 px-6 bg-gray-900 text-center">
+  <h2 class="text-3xl font-bold text-white mb-4">¿Necesitas algo similar?</h2>
+  <p class="text-gray-400 mb-8 max-w-xl mx-auto">Pídenos presupuesto sin compromiso.</p>
+  <%= link_to "Solicitar presupuesto", new_quote_path,
+      class: "bg-yellow-400 text-gray-900 font-bold px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition-colors" %>
+</section>

@@ -1,9 +1,11 @@
 class QuotesController < ApplicationController
+  before_action :require_admin, only: %i[ index edit update destroy ]
   before_action :set_quote, only: %i[ show edit update destroy ]
+  invisible_captcha only: [:create]
 
   # GET /quotes or /quotes.json
   def index
-    @quotes = Quote.all
+    @quotes = Quote.order(created_at: :desc)
   end
 
   # GET /quotes/1 or /quotes/1.json
@@ -25,7 +27,8 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.save
-        format.html { redirect_to @quote, notice: "Quote was successfully created." }
+        QuoteMailer.new_quote(@quote).deliver_later
+        format.html { redirect_to @quote, notice: "¡Gracias! Hemos recibido tu solicitud y nos pondremos en contacto contigo pronto." }
         format.json { render :show, status: :created, location: @quote }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +68,11 @@ class QuotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quote_params
-      params.expect(quote: [ :name, :phone, :email, :message, :status ])
+      params.expect(quote: [ :name, :phone, :email, :message, :status,
+                             :provincia, :ciudad, :codigo_postal,
+                             :titulo, :suministro_electrico, :tipo_alimentacion,
+                             :tipo_vivienda, :tipo_vivienda_otro,
+                             :superficie, :puntos_de_luz,
+                             :tipo_reforma, :tipo_reforma_otro ])
     end
 end
