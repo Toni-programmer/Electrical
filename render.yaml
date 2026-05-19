@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: electricas-rincon
+    runtime: ruby
+    region: frankfurt
+    plan: free
+    buildCommand: bundle install && bin/rails assets:precompile && bin/rails db:migrate
+    startCommand: bundle exec puma -C config/puma.rb
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        value: 9b1a419bca28bdcf50ba6d01adf5f4db
+      - key: SECRET_KEY_BASE
+        value: 06644319527587681b06bcfdc827c939613e8f302d738089ede15b1553cac699ebbffe2ce4faaf723a444014f95276ec04b8199e889008e276f4eddb40eac08c
+      - key: RAILS_LOG_TO_STDOUT
+        value: "true"
+      - key: RAILS_SERVE_STATIC_FILES
+        value: "true"
+      - key: CONTACT_EMAIL
+        value: electricasrincon@gmail.com
+      - key: MAIL_FROM
+        value: electricasrincon@gmail.com
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_DOMAIN
+        value: gmail.com
+      - key: SMTP_USERNAME
+        value: electricasrincon@gmail.com
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
