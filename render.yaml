@@ -4,7 +4,7 @@ services:
     runtime: ruby
     region: frankfurt
     plan: free
-    buildCommand: bundle install && bin/rails assets:precompile && bin/rails db:migrate
+    buildCommand: bundle install && RAILS_ENV=production bin/rails assets:precompile && RAILS_ENV=production bin/rails db:migrate
     startCommand: bundle exec puma -C config/puma.rb
     envVars:
       - key: RAILS_ENV
