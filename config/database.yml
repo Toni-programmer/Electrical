@@ -11,6 +11,23 @@ test:
   <<: *default
   database: storage/test.sqlite3
 
+deployment:
+  primary: &primary_deployment
+    <<: *default
+    database: storage/production.sqlite3
+  cache:
+    <<: *primary_deployment
+    database: storage/production_cache.sqlite3
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_deployment
+    database: storage/production_queue.sqlite3
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_deployment
+    database: storage/production_cable.sqlite3
+    migrations_paths: db/cable_migrate
+
 production:
   primary: &primary_production
     <<: *default
