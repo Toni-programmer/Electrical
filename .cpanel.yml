@@ -1,0 +1,9 @@
+---
+deployment:
+  tasks:
+    - export RAILS_ENV=production
+    - bundle install --without development test
+    - bin/rails db:migrate
+    - bin/rails db:seed
+    - bin/rails assets:precompile
+    - touch tmp/restart.txt
