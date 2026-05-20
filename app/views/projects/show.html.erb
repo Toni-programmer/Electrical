@@ -1,4 +1,6 @@
 <% content_for :title, "#{@project.title} – Electricas Rincón" %>
+<% content_for :head do %><meta name="turbo-cache-control" content="no-cache"><% end %>
+<% all_images = ([@project.image] + @project.gallery_images).compact.select(&:present?) %>
 
 <section class="bg-yellow-400 py-16 px-6">
   <div class="max-w-6xl mx-auto">
@@ -12,35 +14,71 @@
   </div>
 </section>
 
-<section class="py-16 px-6">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-    <% if @project.image.present? %>
-      <div class="rounded-2xl overflow-hidden shadow-md">
-        <%= image_tag @project.image, alt: @project.title, class: "w-full h-80 object-cover" %>
+<section class="py-12 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <% if all_images.any? %>
+      <!-- Carrusel -->
+      <div style="position:relative; background:#111; border-radius:16px; overflow:hidden; margin-bottom:12px;">
+        <!-- Imagen activa -->
+        <div style="height:480px; display:flex; align-items:center; justify-content:center;">
+          <img id="carousel-img" src=""
+               alt="<%= @project.title %>"
+               style="max-height:480px; max-width:100%; object-fit:contain; cursor:zoom-in;"
+               onclick="openLightbox()">
+        </div>
+
+        <% if all_images.size > 1 %>
+          <!-- Flecha izquierda -->
+          <button onclick="changeSlide(-1)" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); border:none; border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:white; z-index:10;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <!-- Flecha derecha -->
+          <button onclick="changeSlide(1)" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); border:none; border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:white; z-index:10;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <!-- Contador -->
+          <div style="position:absolute; bottom:12px; right:16px; background:rgba(0,0,0,0.55); color:white; font-size:12px; font-weight:600; padding:4px 12px; border-radius:20px;">
+            <span id="counter">1</span> / <%= all_images.size %>
+          </div>
+        <% end %>
       </div>
+
+      <!-- Miniaturas -->
+      <% if all_images.size > 1 %>
+        <div style="display:flex; gap:8px; overflow-x:auto; padding-bottom:8px;">
+          <% all_images.each_with_index do |img, i| %>
+            <button onclick="goToSlide(<%= i %>)" id="thumb-<%= i %>"
+              style="flex-shrink:0; border-radius:8px; overflow:hidden; border:2px solid <%= i == 0 ? '#facc15' : 'transparent' %>; opacity:<%= i == 0 ? '1' : '0.6' %>; cursor:pointer; padding:0; background:none; transition:all 0.2s;">
+              <%= image_tag img, alt: "foto #{i+1}", style: "width:80px; height:64px; object-fit:cover; display:block;" %>
+            </button>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-    <div>
+
+    <!-- Descripción -->
+    <div class="mt-10">
       <h2 class="text-2xl font-bold text-gray-900 mb-4">Descripción del proyecto</h2>
-      <p class="text-gray-600 leading-relaxed mb-8"><%= @project.description %></p>
+      <p class="text-gray-600 leading-relaxed mb-6"><%= @project.description %></p>
       <%= link_to "← Volver a proyectos", projects_path, class: "text-yellow-500 font-semibold hover:underline" %>
     </div>
   </div>
 </section>
 
-<% if @project.gallery_images.any? %>
-  <section class="py-12 px-6 bg-gray-50">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8">Galería</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <% @project.gallery_images.each do |img| %>
-          <div class="rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-            <%= image_tag img, alt: @project.title, class: "w-full h-48 object-cover hover:scale-105 transition-transform duration-300" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </section>
-<% end %>
+<!-- Lightbox -->
+<div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center;" onclick="closeLightbox()">
+  <button onclick="closeLightbox()" style="position:absolute; top:16px; right:16px; background:none; border:none; color:white; cursor:pointer;">
+    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+  <button onclick="event.stopPropagation(); lightboxChange(-1)" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); background:none; border:none; color:white; cursor:pointer;">
+    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+  </button>
+  <img id="lightbox-img" src="" alt="" style="max-height:95vh; max-width:90vw; object-fit:contain;" onclick="event.stopPropagation()">
+  <button onclick="event.stopPropagation(); lightboxChange(1)" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); background:none; border:none; color:white; cursor:pointer;">
+    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+  </button>
+</div>
 
 <section class="py-20 px-6 bg-gray-900 text-center">
   <h2 class="text-3xl font-bold text-white mb-4">¿Necesitas algo similar?</h2>
@@ -48,3 +86,54 @@
   <%= link_to "Solicitar presupuesto", new_quote_path,
       class: "bg-yellow-400 text-gray-900 font-bold px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition-colors" %>
 </section>
+
+<script>
+  var images = [];
+  var current = 0;
+
+  function initCarousel() {
+    var thumbs = document.querySelectorAll('[id^="thumb-"] img');
+    images = Array.from(thumbs).map(function(img) { return img.src; });
+    current = 0;
+    var mainImg = document.getElementById('carousel-img');
+    if (mainImg && images.length > 0) mainImg.src = images[0];
+  }
+
+  document.addEventListener('turbo:load', initCarousel);
+  document.addEventListener('DOMContentLoaded', initCarousel);
+
+  function goToSlide(index) {
+    current = (index + images.length) % images.length;
+    document.getElementById('carousel-img').src = images[current];
+    var counter = document.getElementById('counter');
+    if (counter) counter.textContent = current + 1;
+    document.querySelectorAll('[id^="thumb-"]').forEach(function(t, i) {
+      t.style.borderColor = i === current ? '#facc15' : 'transparent';
+      t.style.opacity = i === current ? '1' : '0.6';
+    });
+  }
+
+  function changeSlide(dir) { goToSlide(current + dir); }
+
+  function openLightbox() {
+    document.getElementById('lightbox-img').src = images[current];
+    document.getElementById('lightbox').style.display = 'flex';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+
+  function lightboxChange(dir) {
+    current = (current + dir + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[current];
+    goToSlide(current);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (document.getElementById('lightbox').style.display === 'none') return;
+    if (e.key === 'ArrowLeft') lightboxChange(-1);
+    if (e.key === 'ArrowRight') lightboxChange(1);
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>

@@ -70,3 +70,4 @@ end
 gem "tailwindcss-rails", "~> 4.4"
 gem "rack-attack"
 gem "invisible_captcha"
+gem "sitemap_generator"

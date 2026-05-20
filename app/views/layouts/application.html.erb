@@ -1,17 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <title><%= content_for(:title) || "Electricas Rincón" %></title>
+    <title><%= content_for(:title) || "Electricistas en Valencia | Electricas Rincón" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Electricas Rincón">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- SEO básico -->
+    <meta name="description" content="<%= content_for(:meta_description) || "Electricistas en Valencia con más de 10 años de experiencia. Instalaciones, reformas y reparaciones eléctricas para hogares y empresas. Presupuesto gratuito." %>">
+    <meta name="keywords" content="electricistas Valencia, electricista Valencia, instalaciones eléctricas Valencia, reformas eléctricas Valencia, Electricas Rincón Valencia">
+    <meta name="author" content="Electricas Rincón">
+    <meta name="robots" content="index, follow">
+
+    <!-- SEO geográfico -->
+    <meta name="geo.region" content="ES-VC">
+    <meta name="geo.placename" content="Valencia, España">
+    <meta name="geo.position" content="39.4561;-0.3531">
+    <meta name="ICBM" content="39.4561, -0.3531">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="business.business">
+    <meta property="og:title" content="<%= content_for(:title) || "Electricistas en Valencia | Electricas Rincón" %>">
+    <meta property="og:description" content="<%= content_for(:meta_description) || "Electricistas en Valencia con más de 10 años de experiencia. Instalaciones, reformas y reparaciones eléctricas." %>">
+    <meta property="og:url" content="https://electricasrinconvlc.es">
+    <meta property="og:locale" content="es_ES">
+    <meta property="business:contact_data:street_address" content="C/ Ingeniero José Sirera 26-22">
+    <meta property="business:contact_data:locality" content="Valencia">
+    <meta property="business:contact_data:postal_code" content="46017">
+    <meta property="business:contact_data:country_name" content="España">
+    <meta property="business:contact_data:phone_number" content="+34622577356">
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ElectricalContractor",
+      "name": "Electricas Rincón",
+      "alternateName": "Instalaciones Eléctricas Rincón",
+      "url": "https://electricasrinconvlc.es",
+      "telephone": "+34622577356",
+      "email": "electricasrincon@gmail.com",
+      "description": "Electricistas en Valencia con más de 10 años de experiencia en instalaciones, reformas y reparaciones eléctricas para hogares y empresas.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C/ Ingeniero José Sirera 26-22",
+        "addressLocality": "Valencia",
+        "postalCode": "46017",
+        "addressRegion": "Comunitat Valenciana",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 39.4561,
+        "longitude": -0.3531
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Valencia"
+      },
+      "priceRange": "€€",
+      "openingHours": "Mo-Fr 08:00-20:00",
+      "sameAs": []
+    }
+    </script>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= yield :head %>
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="canonical" href="https://electricasrinconvlc.es<%= request.path %>">
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -155,7 +215,20 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
-              <span>oscar@electricasrincon.com</span>
+              <span>electricasrincon@gmail.com</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="h-4 w-4 text-yellow-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              <a href="https://www.google.com/maps/search/?api=1&query=Calle+Ingeniero+Jose+Sirera+26,+46017+Valencia"
+                 target="_blank" rel="noopener noreferrer"
+                 class="hover:text-yellow-400 transition-colors">
+                C/ Ingeniero José Sirera 26-22<br>46017 Valencia
+              </a>
             </li>
           </ul>
           <%= link_to "Solicitar Presupuesto", new_quote_path,
