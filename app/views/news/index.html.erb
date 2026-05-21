@@ -12,7 +12,9 @@
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% @news.each do |item| %>
       <% logo_image = item.image.present? && %w[news-curenergia.png news-rastreator.svg news-aprendeelectricidad.jpg].include?(item.image) %>
-      <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col">
+      <% url = safe_external_url(item.link) %>
+      <%= content_tag :a, href: url, target: "_blank", rel: "noopener noreferrer",
+            class: "bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col #{'cursor-pointer' if url}" do %>
         <div class="relative h-36 overflow-hidden <%= logo_image ? 'bg-gray-50' : 'bg-gray-100' %>">
           <% if item.image.present? %>
             <%= image_tag item.image,
@@ -29,12 +31,11 @@
         <div class="p-4 flex flex-col flex-1">
           <h2 class="text-sm font-bold text-gray-900 mb-2 leading-snug"><%= item.title %></h2>
           <p class="text-gray-500 text-xs mb-4 flex-1 line-clamp-3"><%= item.content %></p>
-          <% if (url = safe_external_url(item.link)) %>
-            <%= link_to "Ver enlace →", url, target: "_blank", rel: "noopener noreferrer",
-                class: "text-yellow-500 font-semibold text-xs hover:underline self-start" %>
+          <% if url %>
+            <span class="text-yellow-500 font-semibold text-xs self-start">Ver enlace →</span>
           <% end %>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </section>
