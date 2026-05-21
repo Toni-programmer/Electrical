@@ -1,10 +1,22 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "#{@news.title} | Electricas Rincón Valencia" %>
+<% content_for :meta_description, "#{@news.content.truncate(155)}" %>
 
-<%= render @news %>
+<section class="bg-yellow-400 py-16 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-4"><%= @news.title %></h1>
+  </div>
+</section>
 
-<div>
-  <%= link_to "Edit this news", edit_news_path(@news) %> |
-  <%= link_to "Back to news", news_index_path %>
-
-  <%= button_to "Destroy this news", @news, method: :delete %>
-</div>
+<section class="py-12 px-6">
+  <div class="max-w-4xl mx-auto">
+    <% if @news.image.present? %>
+      <%= image_tag @news.image, alt: @news.title, class: "w-full h-64 object-cover rounded-xl mb-8" %>
+    <% end %>
+    <p class="text-gray-700 leading-relaxed text-lg mb-8"><%= @news.content %></p>
+    <% if (url = safe_external_url(@news.link)) %>
+      <%= link_to "Ver enlace externo →", url, target: "_blank", rel: "noopener noreferrer",
+          class: "inline-block bg-yellow-400 text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-yellow-300 transition-colors mb-8" %>
+    <% end %>
+    <%= link_to "← Volver a noticias", news_index_path, class: "text-yellow-500 font-semibold hover:underline" %>
+  </div>
+</section>

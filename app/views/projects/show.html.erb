@@ -1,4 +1,5 @@
-<% content_for :title, "#{@project.title} – Electricas Rincón" %>
+<% content_for :title, "#{@project.title} en Valencia | Electricas Rincón" %>
+<% content_for :meta_description, "#{@project.description.truncate(155)}" %>
 <% content_for :head do %><meta name="turbo-cache-control" content="no-cache"><% end %>
 <% all_images = ([@project.image] + @project.gallery_images).compact.select(&:present?) %>
 
