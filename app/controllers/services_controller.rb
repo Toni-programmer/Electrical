@@ -61,7 +61,7 @@ class ServicesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service
-      @service = Service.find_by!(slug: params[:id])
+      @service = Service.find_by(slug: params[:id]) || Service.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
