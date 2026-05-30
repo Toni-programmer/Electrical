@@ -1,5 +1,47 @@
-<% content_for :title, "Electricistas en Valencia | Electricas Rincón" %>
-<% content_for :meta_description, "Electricistas en Valencia con más de 10 años de experiencia. Instalaciones eléctricas, reformas y reparaciones para hogares y empresas en Valencia. Presupuesto gratuito." %>
+<% content_for :title, "Electricistas en Valencia | Empresa de Electricidad – Electricas Rincón" %>
+<% content_for :meta_description, "Electricistas en Valencia con más de 10 años de experiencia. Empresa de electricidad para instalaciones, reformas y reparaciones eléctricas en hogares y empresas. Presupuesto gratuito." %>
+<% content_for :head do %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta contratar un electricista en Valencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El precio de un electricista en Valencia depende del trabajo a realizar. En Electricas Rincón ofrecemos presupuesto gratuito y sin compromiso. Las reparaciones sencillas pueden partir de 50-80€, mientras que instalaciones completas o reformas se presupuestan según el proyecto. Llámanos al 622 577 356 para una valoración."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Sois una empresa de electricidad autorizada en Valencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Electricas Rincón es una empresa de electricidad certificada y autorizada por la Comunitat Valenciana. Todos nuestros trabajos cumplen con la normativa vigente y se entregan con la documentación reglamentaria."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿En qué zonas de Valencia trabajáis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trabajamos en toda la ciudad de Valencia y su área metropolitana, incluyendo Mislata, Burjassot, Paterna, Torrent y Manises. Nos desplazamos a cualquier barrio de Valencia: Ruzafa, Benimaclet, Campanar, el Cabanyal, Patraix, La Saïdia y más."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hacéis instalaciones eléctricas para empresas en Valencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Además de trabajos para particulares, somos una empresa eléctrica especializada en instalaciones para negocios, locales comerciales, oficinas e industria en Valencia. Contacta con nosotros para un presupuesto a medida."
+      }
+    }
+  ]
+}
+</script>
+<% end %>
 <!-- Hero -->
 <section class="relative min-h-[500px] flex items-stretch overflow-hidden">
   <%# Imagen de fondo completa %>
@@ -11,11 +53,11 @@
   <%# Contenido de texto %>
   <div class="relative z-10 flex flex-col justify-center w-full md:w-1/2 px-8 md:px-16 py-20 bg-yellow-400/60 md:bg-transparent">
     <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
-      Soluciones eléctricas<br>
-      profesionales
+      Electricistas en Valencia<br>
+      <span class="text-gray-700 text-3xl md:text-4xl font-bold">Instalaciones y reparaciones</span>
     </h1>
     <p class="text-gray-800 text-lg mb-8 max-w-md">
-      Instalaciones, reparaciones y mantenimiento eléctrico para hogares y empresas. Rápido, seguro y con garantía.
+      Tu empresa de electricidad en Valencia de confianza. Instalaciones, reparaciones y mantenimiento eléctrico para hogares y empresas. Rápido, seguro y con garantía.
     </p>
     <div class="flex flex-wrap gap-4">
       <%= link_to "Solicitar presupuesto", new_quote_path,
@@ -193,6 +235,48 @@
       <div class="flex flex-wrap items-center justify-center gap-12">
         <%= image_tag "logo-comunitat.png", alt: "Comunidad Valenciana", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
       </div>
+    </div>
+  </div>
+</section>
+<!-- Texto SEO local -->
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Tu empresa de electricidad en Valencia</h2>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Somos <strong>Electricas Rincón</strong>, una empresa eléctrica con base en Valencia especializada en todo tipo de instalaciones y reparaciones. Llevamos más de 10 años siendo el electricista de confianza de particulares, comunidades de vecinos y empresas de la ciudad.
+      </p>
+      <p class="text-gray-600 leading-relaxed mb-4">
+        Tanto si necesitas un electricista urgente en Valencia para una avería, como si buscas una empresa de electricidad para una reforma o instalación nueva, estamos a tu disposición con respuesta rápida y presupuesto sin compromiso.
+      </p>
+      <p class="text-gray-600 leading-relaxed">
+        Trabajamos en todos los barrios de Valencia: Campanar, Benimaclet, Ruzafa, el Cabanyal, Patraix, Nou Moles, Jesús, La Saïdia, Benicalap y alrededores. También atendemos municipios del área metropolitana.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">¿Por qué elegirnos?</h2>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <svg class="h-5 w-5 text-yellow-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 text-sm"><strong>Instaladores autorizados</strong> por la Comunitat Valenciana — trabajo certificado y con todas las garantías legales.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <svg class="h-5 w-5 text-yellow-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 text-sm"><strong>Presupuesto gratuito</strong> y sin sorpresas — tarifas claras antes de empezar cualquier trabajo.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <svg class="h-5 w-5 text-yellow-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 text-sm"><strong>Más de 500 proyectos</strong> completados en Valencia y su área metropolitana.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <svg class="h-5 w-5 text-yellow-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 text-sm"><strong>Atención rápida</strong> — respondemos en el mismo día y valoramos tu tiempo.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <svg class="h-5 w-5 text-yellow-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-600 text-sm"><strong>Valoración 5/5 en Google</strong> — más de una decena de clientes satisfechos avalan nuestro trabajo.</span>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
