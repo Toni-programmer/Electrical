@@ -58,15 +58,15 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: ENV.fetch("APP_HOST", "electricasrinconvlc.es") }
+  config.action_mailer.default_url_options = { host: ENV.fetch("APP_HOST", "electricasrincon.es") }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    address:              ENV.fetch("SMTP_HOST", "mail.electricasrinconvlc.es"),
+    address:              ENV.fetch("SMTP_HOST", "mail.electricasrincon.es"),
     port:                 ENV.fetch("SMTP_PORT", "465").to_i,
-    domain:               ENV.fetch("SMTP_DOMAIN", "electricasrinconvlc.es"),
+    domain:               ENV.fetch("SMTP_DOMAIN", "electricasrincon.es"),
     user_name:            ENV.fetch("SMTP_USERNAME", ""),
     password:             ENV.fetch("SMTP_PASSWORD", ""),
     authentication:       :plain,
@@ -85,8 +85,8 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Allow requests from the production domain and www subdomain
-  config.hosts << "electricasrinconvlc.es"
-  config.hosts << "www.electricasrinconvlc.es"
+  config.hosts << "electricasrincon.es"
+  config.hosts << "www.electricasrincon.es"
   config.hosts << "195.35.25.41"
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
