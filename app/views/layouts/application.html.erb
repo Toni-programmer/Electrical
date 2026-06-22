@@ -26,11 +26,22 @@
     <meta property="og:description" content="<%= content_for(:meta_description) || "Electricistas en Valencia con más de 10 años de experiencia. Instalaciones, reformas y reparaciones eléctricas." %>">
     <meta property="og:url" content="https://electricasrincon.es">
     <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="Electricas Rincón">
+    <meta property="og:image" content="<%= image_url('hero-electrician.jpg') %>">
+    <meta property="og:image:width" content="924">
+    <meta property="og:image:height" content="1000">
+    <meta property="og:image:alt" content="Electricista Rincón trabajando en cuadro eléctrico">
     <meta property="business:contact_data:street_address" content="C/ Ingeniero José Sirera 26-22">
     <meta property="business:contact_data:locality" content="Valencia">
     <meta property="business:contact_data:postal_code" content="46017">
     <meta property="business:contact_data:country_name" content="España">
     <meta property="business:contact_data:phone_number" content="+34622577356">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= content_for(:title) || "Electricistas en Valencia | Electricas Rincón" %>">
+    <meta name="twitter:description" content="<%= content_for(:meta_description) || "Electricistas en Valencia con más de 10 años de experiencia. Instalaciones, reformas y reparaciones eléctricas." %>">
+    <meta name="twitter:image" content="<%= image_url('hero-electrician.jpg') %>">
 
     <!-- Schema.org LocalBusiness -->
     <script type="application/ld+json">
