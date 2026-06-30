@@ -268,6 +268,20 @@
           </a>
         </div>
       </div>
+      <!-- Legal links row -->
+      <div class="border-t border-gray-700 py-3 px-6">
+        <div class="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-gray-500">
+          <%= link_to "Aviso Legal", aviso_legal_path, class: "hover:text-yellow-400 transition-colors" %>
+          <span aria-hidden="true">·</span>
+          <%= link_to "Política de Privacidad", politica_privacidad_path, class: "hover:text-yellow-400 transition-colors" %>
+          <span aria-hidden="true">·</span>
+          <%= link_to "Política de Cookies", politica_cookies_path, class: "hover:text-yellow-400 transition-colors" %>
+          <span aria-hidden="true">·</span>
+          <%= link_to "Términos y Condiciones", terminos_path, class: "hover:text-yellow-400 transition-colors" %>
+          <span aria-hidden="true">·</span>
+          <button onclick="window.erResetCookieConsent && window.erResetCookieConsent()" class="hover:text-yellow-400 transition-colors cursor-pointer">Gestionar cookies</button>
+        </div>
+      </div>
       <div class="border-t border-gray-700 text-center text-sm py-4 text-gray-500">
         &copy; <%= Date.current.year %> Electricas Rincón. Todos los derechos reservados.
       </div>
@@ -276,6 +290,51 @@
       document.getElementById('menu-btn').addEventListener('click', function() {
         document.getElementById('mobile-menu').classList.toggle('hidden');
       });
+    </script>
+
+    <!-- ===== COOKIE NOTICE BANNER ===== -->
+    <!--
+      Storage key: er_cookie_consent (localStorage)
+      Only essential/technical cookies used — no consent needed, just an informational notice.
+      Banner dismissed with a single "Entendido" button.
+      Re-shown via window.erResetCookieConsent() from the footer "Gestionar cookies" link.
+    -->
+    <div id="cookie-banner" class="hidden" role="region" aria-label="Aviso de cookies"
+         style="position:fixed;bottom:0;left:0;right:0;z-index:9000;background:#111827;border-top:2px solid #facc15;padding:0.875rem 1.5rem;">
+      <div style="max-width:72rem;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;">
+        <p style="color:#9ca3af;font-size:0.75rem;line-height:1.5;flex:1;min-width:16rem;margin:0;">
+          <span style="color:#f3f4f6;font-weight:600;">Este sitio usa cookies técnicas</span>
+          necesarias para su funcionamiento (sesión y seguridad de formularios). No utilizamos cookies de seguimiento ni analítica.
+          <a href="<%= politica_cookies_path %>" style="color:#facc15;text-decoration:underline;">Más información</a>
+        </p>
+        <button id="cookie-accept-all"
+                style="background:#facc15;color:#111827;font-size:0.8125rem;font-weight:700;padding:0.5rem 1.25rem;border-radius:0.5rem;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;"
+                onmouseover="this.style.background='#fde047'" onmouseout="this.style.background='#facc15'">
+          Entendido
+        </button>
+      </div>
+    </div>
+    <!-- ===== END COOKIE NOTICE BANNER ===== -->
+
+    <script>
+    (function() {
+      var STORAGE_KEY = 'er_cookie_consent';
+      var banner = document.getElementById('cookie-banner');
+
+      window.erResetCookieConsent = function() {
+        localStorage.removeItem(STORAGE_KEY);
+        banner.classList.remove('hidden');
+      };
+
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        banner.classList.remove('hidden');
+      }
+
+      document.getElementById('cookie-accept-all').addEventListener('click', function() {
+        localStorage.setItem(STORAGE_KEY, '1');
+        banner.classList.add('hidden');
+      });
+    })();
     </script>
 
     <!-- Botón WhatsApp flotante -->

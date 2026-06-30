@@ -6,4 +6,16 @@ class PagesController < ApplicationController
 
   def company
   end
+
+  def aviso_legal
+  end
+
+  def politica_privacidad
+  end
+
+  def politica_cookies
+  end
+
+  def terminos
+  end
 end
