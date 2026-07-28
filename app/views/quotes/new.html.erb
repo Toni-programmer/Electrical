@@ -1,8 +1,12 @@
-<% content_for :title, "Solicitar presupuesto – Electricas Rincón" %>
+<% content_for :title, "Presupuesto electricista en Valencia – Electricas Rincón" %>
 
-<section class="bg-yellow-400 py-20 px-6">
-  <div class="max-w-6xl mx-auto">
-    <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Solicita tu presupuesto</h1>
+<section class="relative min-h-[260px] flex items-stretch overflow-hidden">
+  <%= image_tag "hero-electrician.jpg",
+        alt: "Electricista en Valencia trabajando",
+        class: "absolute inset-0 w-full h-full object-cover object-center" %>
+  <div class="absolute inset-0" style="background: linear-gradient(to right, #facc15 0%, #facc15 38%, rgba(250,204,21,0.75) 55%, rgba(250,204,21,0) 80%);"></div>
+  <div class="relative z-10 flex flex-col justify-center w-full md:w-1/2 px-8 md:px-16 py-16 bg-yellow-400/70 md:bg-transparent">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Presupuesto electricista en Valencia</h1>
     <p class="text-gray-800 text-lg max-w-2xl">Cuéntanos qué necesitas y te respondemos en menos de 24 horas. Sin compromiso.</p>
   </div>
 </section>

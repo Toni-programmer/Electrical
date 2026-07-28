@@ -24,7 +24,7 @@
     <meta property="og:type" content="business.business">
     <meta property="og:title" content="<%= content_for(:title) || "Electricistas en Valencia | Electricas Rincón" %>">
     <meta property="og:description" content="<%= content_for(:meta_description) || "Electricistas en Valencia con más de 10 años de experiencia. Instalaciones, reformas y reparaciones eléctricas." %>">
-    <meta property="og:url" content="https://electricasrincon.es">
+    <meta property="og:url" content="https://electricasrincon.es<%= request.path %>">
     <meta property="og:locale" content="es_ES">
     <meta property="og:site_name" content="Electricas Rincón">
     <meta property="og:image" content="<%= image_url('hero-electrician.jpg') %>">
