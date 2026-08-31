@@ -4,7 +4,7 @@ Service.create!(
   title: "Instalación eléctrica",
   slug: "instalacion-electrica",
   description: "Realizamos instalaciones eléctricas completas para viviendas, locales y comunidades. Desde el proyecto hasta la legalización ante la Conselleria, cumpliendo el Reglamento Electrotécnico de Baja Tensión.",
-  image: "cuadro  1.jpg"
+  image: "instalando.jpg"
 )
 
 Service.create!(
@@ -33,6 +33,20 @@ Service.create!(
   slug: "porteros-videoporteros",
   description: "Instalación y sustitución de sistemas de portero automático y videoportero para viviendas y comunidades. Sistemas analógicos y digitales con apertura remota desde el móvil.",
   image: "telefonillo 1.jpg"
+)
+
+Service.create!(
+  title: "Boletín (Certificado eléctrico)",
+  slug: "boletin-certificado-electrico",
+  description: "Cambio de acometida más placa con fusibles BUC.",
+  image: "boletin-certificado.jpg"
+)
+
+Service.create!(
+  title: "Instalaciones eléctricas en naves y comercios",
+  slug: "instalaciones-naves-comercios",
+  description: "Ejecutamos instalaciones eléctricas completas para naves industriales, locales y establecimientos comerciales: cuadros de distribución, alumbrado técnico y de emergencia, fuerza motriz y adaptación a la actividad del negocio. Proyectos y boletines conforme al Reglamento Electrotécnico de Baja Tensión.",
+  image: "nave.jpg"
 )
 
 News.destroy_all
@@ -138,6 +152,16 @@ Project.create!(
   description: "Instalación completa de cuadro eléctrico con protecciones diferenciales y magnetotérmicos en vivienda unifamiliar. Trabajo realizado según el Reglamento Electrotécnico de Baja Tensión, garantizando la máxima seguridad de toda la instalación.",
   client: "Particular",
   category: "Cuadros eléctricos",
-  image: "cuadro  1.jpg",
+  image: "cuadro 1.jpg",
   gallery: ["cuadro 1.1.jpg", "cuadro 1.2.jpg", "cuadro 1.3.jpg", "cuadro 1.4.jpg"].to_json
+)
+
+Project.create!(
+  title: "Local comercial y plantas bajas",
+  slug: "local-comercial-plantas-bajas",
+  description: "Instalación eléctrica completa en local comercial y planta baja: cuadro de distribución, iluminación técnica, tomas de fuerza para maquinaria y adaptación a la actividad del negocio, cumpliendo el Reglamento Electrotécnico de Baja Tensión.",
+  client: "Comercio",
+  category: "Locales comerciales",
+  image: "local.jpg",
+  gallery: ["local 2.jpg", "local 3.jpg"].to_json
 )

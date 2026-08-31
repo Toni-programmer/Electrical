@@ -4,9 +4,13 @@ class Rack::Attack
     req.ip if req.path == "/quotes" && req.post?
   end
 
-  # Máximo 20 peticiones generales por minuto por IP (protección básica ante scraping)
-  throttle("req/ip", limit: 20, period: 1.minute) do |req|
-    req.ip unless req.path.start_with?("/assets")
+  # Rutas estáticas que no pasan por el pipeline de assets pero no deben
+  # contar como "peticiones de navegación" (favicon, robots, sitemap...)
+  STATIC_PATHS = %w[/icon.png /icon.svg /robots.txt /sitemap.xml].freeze
+
+  # Máximo 60 peticiones generales por minuto por IP (protección básica ante scraping)
+  throttle("req/ip", limit: 60, period: 1.minute) do |req|
+    req.ip unless req.path.start_with?("/assets") || STATIC_PATHS.include?(req.path)
   end
 
   # Respuesta cuando se supera el límite
