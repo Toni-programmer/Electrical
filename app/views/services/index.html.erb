@@ -17,7 +17,7 @@
       <%= link_to service_path(service), class: "bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group border border-gray-100 flex flex-col" do %>
         <div class="relative h-48 overflow-hidden">
           <% if service.image.present? %>
-            <%= image_tag service.image, alt: service.title, loading: "lazy",
+            <%= photo_tag service.image, alt: service.title, loading: "lazy",
                  class: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" %>
           <% else %>
             <div class="w-full h-full bg-yellow-100 flex items-center justify-center">

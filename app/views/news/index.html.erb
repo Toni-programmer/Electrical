@@ -17,7 +17,7 @@
             class: "bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col #{'cursor-pointer' if url}" do %>
         <div class="relative h-36 overflow-hidden <%= logo_image ? 'bg-gray-50' : 'bg-gray-100' %>">
           <% if item.image.present? %>
-            <%= image_tag item.image,
+            <%= photo_tag item.image,
                   alt: item.title,
                   loading: "lazy",
                   class: "w-full h-full #{logo_image ? 'object-contain p-4' : 'object-cover group-hover:scale-105 transition-transform duration-300'}" %>
@@ -30,6 +30,9 @@
           <% end %>
         </div>
         <div class="p-4 flex flex-col flex-1">
+          <time datetime="<%= item.created_at.iso8601 %>" class="text-gray-400 text-xs font-medium mb-1">
+            <%= spanish_date(item.created_at) %>
+          </time>
           <h2 class="text-sm font-bold text-gray-900 mb-2 leading-snug"><%= item.title %></h2>
           <p class="text-gray-500 text-xs mb-4 flex-1 line-clamp-3"><%= item.content %></p>
           <% if url %>
