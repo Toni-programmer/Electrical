@@ -38,7 +38,7 @@ Service.create!(
 Service.create!(
   title: "Boletín (Certificado eléctrico)",
   slug: "boletin-certificado-electrico",
-  description: "Cambio de acometida más placa con fusibles BUC.",
+  description: "Tramitamos el Boletín Eléctrico (Certificado de Instalación) exigido por la Conselleria: cambio de acometida y sustitución de la placa de fusibles por una caja general de protección homologada con fusibles BUC, dejando la instalación conforme al REBT.",
   image: "boletin-certificado.jpg"
 )
 

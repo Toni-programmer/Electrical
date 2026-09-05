@@ -1,5 +1,5 @@
-<% content_for :title, "Electricistas en Valencia | Empresa de Electricidad – Electricas Rincón" %>
-<% content_for :meta_description, "Electricistas en Valencia con más de 10 años de experiencia. Empresa de electricidad para instalaciones, reformas y reparaciones eléctricas en hogares y empresas. Presupuesto gratuito." %>
+<% content_for :title, "Electricistas en Valencia | Electricas Rincón" %>
+<% content_for :meta_description, "Electricistas en Valencia con más de 10 años de experiencia. Instalaciones, reformas y reparaciones eléctricas para hogares y empresas. Presupuesto gratuito." %>
 <% content_for :head do %>
 <script type="application/ld+json">
 {
@@ -95,7 +95,7 @@
           <%= link_to service_path(service), class: "block bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow group" do %>
             <% if service.image.present? %>
               <div class="h-48 sm:h-44 overflow-hidden">
-                <%= image_tag service.image, alt: service.title, class: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" %>
+                <%= image_tag service.image, alt: service.title, loading: "lazy", class: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" %>
               </div>
             <% end %>
             <div class="p-5">
@@ -123,7 +123,7 @@
         <% @projects.each do |project| %>
           <%= link_to project_path(project), class: "block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow" do %>
             <% if project.image.present? %>
-              <%= image_tag project.image, alt: project.title, class: "w-full h-48 object-cover" %>
+              <%= image_tag project.image, alt: project.title, loading: "lazy", class: "w-full h-48 object-cover" %>
             <% else %>
               <div class="w-full h-48 bg-yellow-100 flex items-center justify-center">
                 <svg class="h-16 w-16 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
@@ -216,24 +216,24 @@
     <div>
       <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Empresas con las que colaboramos</p>
       <div class="flex flex-wrap items-center justify-center gap-6 md:gap-12">
-        <%= image_tag "logo-arkima.png", alt: "Arkima", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
-        <%= image_tag "logo-promurban.png", alt: "Promurban", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
-        <%= image_tag "logo-consnaval.jpg", alt: "Consnaval", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
+        <%= image_tag "logo-arkima.png", alt: "Arkima", loading: "lazy", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
+        <%= image_tag "logo-promurban.png", alt: "Promurban", loading: "lazy", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
+        <%= image_tag "logo-consnaval.jpg", alt: "Consnaval", loading: "lazy", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
       </div>
     </div>
     <div class="border-t border-gray-100 pt-8">
       <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Proveedores que colaboran con nosotros</p>
       <div class="flex flex-wrap items-center justify-center gap-6 md:gap-12">
-        <%= image_tag "logo-sindel.jpg", alt: "Sindel materiales eléctricos", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
-        <%= image_tag "logo-volton.jpg", alt: "Volton", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
-        <%= image_tag "logo-fermax.svg", alt: "Fermax", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
-        <%= image_tag "logo-obramat.png", alt: "Obramat", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
+        <%= image_tag "logo-sindel.jpg", alt: "Sindel materiales eléctricos", loading: "lazy", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
+        <%= image_tag "logo-volton.jpg", alt: "Volton", loading: "lazy", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
+        <%= image_tag "logo-fermax.svg", alt: "Fermax", loading: "lazy", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
+        <%= image_tag "logo-obramat.png", alt: "Obramat", loading: "lazy", class: "h-14 w-28 md:h-20 md:w-48 object-contain" %>
       </div>
     </div>
     <div class="border-t border-gray-100 pt-8">
       <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Entidades oficiales</p>
       <div class="flex flex-wrap items-center justify-center gap-12">
-        <%= image_tag "logo-comunitat.png", alt: "Comunidad Valenciana", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+        <%= image_tag "logo-comunitat.png", alt: "Comunidad Valenciana", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
       </div>
     </div>
   </div>

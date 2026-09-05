@@ -1,5 +1,7 @@
-<% content_for :title, "#{@project.title} en Valencia | Electricas Rincón" %>
+<% content_for :title, seo_title(@project.title) %>
 <% content_for :meta_description, "#{@project.description.truncate(155)}" %>
+<% content_for :og_image, @project.image if @project.image.present? %>
+<% content_for :og_image_alt, @project.title %>
 <% content_for :head do %><meta name="turbo-cache-control" content="no-cache"><% end %>
 <% all_images = ([@project.image] + @project.gallery_images).compact.select(&:present?) %>
 
@@ -51,7 +53,7 @@
           <% all_images.each_with_index do |img, i| %>
             <button onclick="goToSlide(<%= i %>)" id="thumb-<%= i %>"
               style="flex-shrink:0; border-radius:8px; overflow:hidden; border:2px solid <%= i == 0 ? '#facc15' : 'transparent' %>; opacity:<%= i == 0 ? '1' : '0.6' %>; cursor:pointer; padding:0; background:none; transition:all 0.2s;">
-              <%= image_tag img, alt: "foto #{i+1}", style: "width:80px; height:64px; object-fit:cover; display:block;" %>
+              <%= image_tag img, alt: "foto #{i+1}", loading: "lazy", style: "width:80px; height:64px; object-fit:cover; display:block;" %>
             </button>
           <% end %>
         </div>

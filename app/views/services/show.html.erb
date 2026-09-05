@@ -1,5 +1,7 @@
-<% content_for :title, "#{@service.title} en Valencia | Electricas Rincón" %>
+<% content_for :title, seo_title(@service.title) %>
 <% content_for :meta_description, "#{@service.description.truncate(155)}" %>
+<% content_for :og_image, @service.image if @service.image.present? %>
+<% content_for :og_image_alt, @service.title %>
 
 <!-- Header -->
 <section class="bg-gray-900 py-16 px-6">
@@ -21,7 +23,7 @@
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
     <div class="md:col-span-2">
       <% if @service.image.present? %>
-        <%= image_tag @service.image, alt: @service.title, class: "w-full h-64 object-cover rounded-2xl mb-8 shadow-md" %>
+        <%= image_tag @service.image, alt: @service.title, loading: "lazy", class: "w-full h-64 object-cover rounded-2xl mb-8 shadow-md" %>
       <% end %>
       <p class="text-gray-600 text-lg leading-relaxed"><%= @service.description %></p>
     </div>

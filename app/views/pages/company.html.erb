@@ -27,6 +27,7 @@
     <div class="relative rounded-2xl overflow-hidden h-80 md:h-96">
       <%= image_tag "hero-electrician.jpg",
           alt: "Electricista Rincón trabajando en cuadro eléctrico",
+          loading: "lazy",
           class: "w-full h-full object-cover object-center" %>
       <div class="absolute inset-0 hidden md:block" style="background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.5) 30%, rgba(255,255,255,0) 60%);"></div>
     </div>
@@ -52,9 +53,9 @@
   <div class="max-w-6xl mx-auto">
     <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">Empresas con las que colaboramos</p>
     <div class="flex flex-wrap md:flex-nowrap items-center justify-center gap-6 md:gap-16">
-      <%= image_tag "logo-arkima.png", alt: "Arkima", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
-      <%= image_tag "logo-promurban.png", alt: "Promurban", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
-      <%= image_tag "logo-consnaval.jpg", alt: "Consnaval", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+      <%= image_tag "logo-arkima.png", alt: "Arkima", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+      <%= image_tag "logo-promurban.png", alt: "Promurban", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+      <%= image_tag "logo-consnaval.jpg", alt: "Consnaval", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
     </div>
   </div>
 </section>
@@ -62,10 +63,10 @@
   <div class="max-w-6xl mx-auto">
     <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">Proveedores que colaboran con nosotros</p>
     <div class="flex flex-wrap md:flex-nowrap items-center justify-center gap-6 md:gap-12">
-      <%= image_tag "logo-sindel.jpg", alt: "Sindel materiales eléctricos", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
-      <%= image_tag "logo-volton.jpg", alt: "Volton", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
-      <%= image_tag "logo-fermax.svg", alt: "Fermax", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
-      <%= image_tag "logo-obramat.png", alt: "Obramat", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+      <%= image_tag "logo-sindel.jpg", alt: "Sindel materiales eléctricos", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+      <%= image_tag "logo-volton.jpg", alt: "Volton", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+      <%= image_tag "logo-fermax.svg", alt: "Fermax", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+      <%= image_tag "logo-obramat.png", alt: "Obramat", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
     </div>
   </div>
 </section>
@@ -73,7 +74,7 @@
   <div class="max-w-6xl mx-auto">
     <p class="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">Entidades oficiales</p>
     <div class="flex flex-wrap items-center justify-center gap-12">
-      <%= image_tag "logo-comunitat.png", alt: "Comunidad Valenciana", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
+      <%= image_tag "logo-comunitat.png", alt: "Comunidad Valenciana", loading: "lazy", class: "h-14 w-32 md:h-[120px] md:w-[352px] object-contain" %>
     </div>
   </div>
 </section>

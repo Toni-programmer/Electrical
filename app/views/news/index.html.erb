@@ -19,6 +19,7 @@
           <% if item.image.present? %>
             <%= image_tag item.image,
                   alt: item.title,
+                  loading: "lazy",
                   class: "w-full h-full #{logo_image ? 'object-contain p-4' : 'object-cover group-hover:scale-105 transition-transform duration-300'}" %>
           <% else %>
             <div class="w-full h-full flex items-center justify-center">
